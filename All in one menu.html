@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Choose your tools</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        button {
+             margin: 10px 0px;
+        }
+        h1 {
+            text-align: center;
+            font-family: Arial;
+            font-size: 35px;
+        }
+        </style>
+    </head>
+
+    <body>
+        <h1>Menu</h1>
+        <div style="text-align: center">
+            <p>Choose a tool:</p>
+        <button id = "navigateButton">Go to Change Calculator</button><br>
+        <button id = "navigateButton2">Go to Grade Assignment</button><br>
+        <button id = "navigateButton3">Go to Unit Converter</button><br>
+    </div>
+    <script>
+          document.getElementById("navigateButton").onclick = function () {
+            window.location.href = "Change_Calculator.html";
+        };
+        document.getElementById("navigateButton2").onclick = function () {
+            window.location.href = "Grade_Assignment.html";
+        };
+        document.getElementById("navigateButton3").onclick = function () {
+            window.location.href = "Unit_Converter.html";
+        };
+    </script>
+    </body>
+</html>

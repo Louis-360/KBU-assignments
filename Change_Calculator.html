@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Change Calculator</title>
+        <script>
+        function calculateChange(){
+            var change = document.getElementById("change").value;
+            if (change < 0 || change === "") {
+                document.getElementById("result").innerHTML = "Please enter a valid amount.";
+                return;
+            }
+            const changeValue = [1000 ,500, 100, 50, 20, 10, 5, 1];
+               let exchange = "";
+               for (let i = 0; i < changeValue.length; i++) {
+                   let count = Math.floor(change / changeValue[i]);
+                   change %= changeValue[i];
+                   
+                   if (count > 0) {
+                       exchange += count + " of " + changeValue[i] + " &#3647<br>";
+                   }
+               }
+            document.getElementById("result").innerHTML = exchange;
+        }
+    </script>
+    </head>
+<body>
+    <h1>Change Calculator</h1>
+    <p style = "display: inline">Enter the amount: </p>
+    <input type = "number" id = "change">
+    <button onclick="calculateChange()">Submit</button>
+    <p id="result"></p>
+
+    <input type="button" value="Go back!" onclick="history.back()">
+</body>
+</html>

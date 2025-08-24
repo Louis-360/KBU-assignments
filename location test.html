@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Distance to Kasem Bundit University</title>
+</head>
+<body>
+    <h1>Distance Finder</h1>
+    <button onclick="calculateDistance()">Where am I?</button>
+    <p id="result"></p>
+
+    <script>
+        // Kasem Bundit University coordinates
+        const uniLat = 13.736717;
+        const uniLon = 100.563529;
+
+        function calculateDistance() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showDistance);
+            } else {
+                document.getElementById("result").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showDistance(position) {
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+            const distance = haversine(userLat, userLon, uniLat, uniLon);
+            document.getElementById("result").innerHTML =
+                `You're ${distance.toFixed(2)} km away from the Kasem Bundit University.`;
+        }
+
+        function haversine(userLat, userLon, uniLat, uniLon) {
+            const R = 6371; // Radius of Earth in km
+            const dLat = toRad(uniLat - userLat);
+            const dLon = toRad(uniLon - userLon);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRad(userLat)) * Math.cos(toRad(uniLat)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function toRad(value) {
+            return value * Math.PI / 180;
+        }
+
+        function showError(error) {
+            document.getElementById("result").innerHTML = "Unable to retrieve your location.";
+        }

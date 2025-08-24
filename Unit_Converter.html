@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Unit converter</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1>Measurement Converter</h1>
+    <script>
+        //unit converter function
+        function converter() {
+            var inches = document.getElementById("inches").value;
+            if (inches < 0 || inches === "") {
+                document.getElementById("result").innerHTML = "Please enter a valid value.";
+                return;
+            }
+            var cm = inches * 2.54;
+            document.getElementById("result").innerHTML = "Equal(s) to " + cm + " cm";
+        }
+    </script>
+    </head>
+
+    <body>
+        <p style="display:inline">Enter inch(es):</p>
+        <input type="number" id="inches">
+        <button onclick="converter()">Submit</button>
+        <p id="result"></p>
+        <input type="button" value="Go back!" onclick="history.back()">
+    </body>
+</html>

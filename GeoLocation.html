@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+ <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <title>Your distance from KBU</title>
+     </head>
+     <body>
+         <h1>Find My Location</h1>
+         <button onclick="getLocation()">Where am I?</button>
+         <p id="distanceFromKBU"></p>
+
+         <script>
+            const kbuLong = 13.803547117591226;
+            const kbuLat = 100.56620562609863;
+                // Function to get the user's current location
+             function getLocation() {
+                 if (navigator.geolocation) {
+                     navigator.geolocation.getCurrentPosition(showPosition);
+                 } else {
+                     document.getElementById("result").innerHTML = "Geolocation is not supported by this browser.";
+                 }
+             }
+
+            function showPosition(position) {
+                const yourPosition = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+                    var yourDistance = position.coords.latitude * 2 + position.coords.longitude * 2;
+                    var KBUPosition = kbuLong * 2 + kbuLat * 2;
+                    var distance = yourDistance - KBUPosition;
+                document.getElementById("distanceFromKBU").innerHTML = `You are ${distance.toFixed(2)} km away from KBU.`;
+
+            }
+         </script>
+     </body>
